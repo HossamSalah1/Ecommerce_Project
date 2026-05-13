@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Style from './FeatureProducts.module.css'
 import axios from 'axios'
 import { Triangle } from 'react-loader-spinner'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../Context/cartContext'
+import toast from 'react-hot-toast';
 
 function FeatureProducts() {
     function getProducts() {
@@ -14,6 +16,21 @@ function FeatureProducts() {
         queryKey: ['featureProducts'],
         queryFn: getProducts
     })
+
+    let { addToCart } = useContext(CartContext)
+
+    async function addProductToCart(id) {
+        let res = await addToCart(id)
+        if(res.data.status==='success'){
+            toast.success('product added successfully')
+        }
+        else{
+            toast.error('Error adding product')
+        }
+        
+
+
+    }
 
 
     //     let [Products, setProducts] = useState([])
@@ -44,8 +61,9 @@ function FeatureProducts() {
             <div className="row">
                 {data?.data?.data?.map((ele) =>
                     <div key={ele.id} className="col-md-2">
-                        <Link to={`/productDetailes/${ele.id}`}>
-                            <div className="product px-2 py-3">
+
+                        <div className="product px-2 py-3">
+                            <Link to={`/productDetailes/${ele.id}`}>
                                 <img src={ele.imageCover} className='w-100' alt="" />
                                 <p className='text-main'>category</p>
                                 <h3>{ele.title.split(" ").slice(0, 3).join(" ")}</h3>
@@ -55,9 +73,10 @@ function FeatureProducts() {
                                         {ele.ratingsAverage}
                                     </i></p>
                                 </div>
-                                <button className="btn bg-main text-white w-100">Add to cart</button>
-                            </div>
-                        </Link>
+                            </Link>
+
+                            <button onClick={() => addProductToCart(ele.id)} className="btn bg-main text-white w-100">Add to cart</button>
+                        </div>
 
                     </div>
                 )}

@@ -39,6 +39,7 @@ a , a:hover{
     color: black !important; 
     text-decoration: none !important;
 }
+
 .product:hover
 {
     box-shadow: var(--shadow);
@@ -49,6 +50,9 @@ a , a:hover{
     transition: transform 1s , opacity 1s;
     transform: translateY(100%);
     opacity: 0;
+}
+.brdr-main{
+    border: solid 2px var(--main-color)
 }
 .product:hover .btn 
 {

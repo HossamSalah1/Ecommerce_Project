@@ -15,6 +15,8 @@ import { UserContext } from './Context/userContext';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import ProductDetailes from './Components/ProductDetailes/ProductDetailes';
 import CartContexProvider from './Context/cartContext';
+import { Toaster } from 'react-hot-toast';
+
 
 
 
@@ -69,6 +71,8 @@ function App() {
     <CounterContextProvider>
       <RouterProvider router={routers}></RouterProvider>
     </CounterContextProvider>
+    <Toaster />
+
   </CartContexProvider>
 
 }
