@@ -16,7 +16,7 @@ function Login() {
     let navigate = useNavigate();
 
     let [error, setError] = useState(null)
-    let {setUserToken}=useContext(UserContext)
+    let {setUserToken, setUserData}=useContext(UserContext)
 
     async function handelSubmit(value) {
         let response = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, value).catch((err) => setError(err.response.data.message)
@@ -24,6 +24,7 @@ function Login() {
         if (response?.data?.message === "success") {
             localStorage.setItem('userToken', response.data.token)
             setUserToken(response.data.token)
+            setUserData(response.data.user)
             navigate('/')
 
         }

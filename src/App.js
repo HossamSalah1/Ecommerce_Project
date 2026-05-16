@@ -6,6 +6,7 @@ import Layout from './Components/Layout/Layout';
 import Products from './Components/Products/Products';
 import Cart from './Components/Cart/Cart';
 import Login from './Components/Login/Login';
+import Profile from './Components/Profile/Profile';
 import Register from './Components/Register/Register';
 import Categories from './Components/Categories/Categories';
 import Notfound from './Components/Notfound/Notfound';
@@ -17,8 +18,8 @@ import ProductDetailes from './Components/ProductDetailes/ProductDetailes';
 import CartContexProvider from './Context/cartContext';
 import { Toaster } from 'react-hot-toast';
 
-
-
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
 
 
 
@@ -32,6 +33,8 @@ let routers = createBrowserRouter([
       { path: 'register', element: <Register /> },
       { path: 'category', element: <ProtectedRoute><Categories /></ProtectedRoute> },
       { path: 'productDetailes/:id', element: <ProtectedRoute><ProductDetailes /></ProtectedRoute> },
+      { path: 'profile', element: <ProtectedRoute><Profile /></ProtectedRoute> },
+
       { path: '*', element: <Notfound /> },
     ]
   }
@@ -67,13 +70,19 @@ function App() {
   //   </div>
   // );
 
-  return <CartContexProvider>
-    <CounterContextProvider>
-      <RouterProvider router={routers}></RouterProvider>
-    </CounterContextProvider>
-    <Toaster />
+  return <>
 
-  </CartContexProvider>
+    <Provider store={store}>
+      <CartContexProvider>
+        <CounterContextProvider>
+          <RouterProvider router={routers}></RouterProvider>
+        </CounterContextProvider>
+        <Toaster />
+
+      </CartContexProvider>
+    </Provider>
+
+  </>
 
 }
 

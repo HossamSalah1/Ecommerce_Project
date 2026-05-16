@@ -1,15 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Style from './Cart.module.css'
+import { Triangle } from 'react-loader-spinner'
+
 import { CartContext } from '../../Context/cartContext'
 
 
 function Cart() {
-    let { getLogedProdect } = useContext(CartContext)
+    let { getLogedProdect, RemoveCareIteam,UpdateCountIteam } = useContext(CartContext)
     let [getCart, SetGetCart] = useState()
 
     async function getCartProduct() {
         let { data } = await getLogedProdect();
         SetGetCart(data)
+    }
+    async function RemoveProduct(id) {
+        let { data } = await RemoveCareIteam(id)
+        SetGetCart(data)
+
+    }
+    async function UpdateCount(id, count) {
+        let { data } = await UpdateCountIteam(id, count)
+        SetGetCart(data)
+
     }
     useEffect(() => {
         getCartProduct();
@@ -32,20 +44,30 @@ function Cart() {
 
                         </div>
                         <div>
-                            <button className='btn brdr-main p-1'>+</button>
+                            <button onClick={() => UpdateCount(product.product.id, product.count + 1)} className='btn brdr-main p-1'>+</button>
                             <span className='mx-2'>{product.count}</span>
-                            <button className='btn bordr-main p-1'>-</button>
+                            <button onClick={() => UpdateCount(product.product.id, product.count - 1)} className='btn bordr-main p-1'>-</button>
 
                         </div>
 
                     </div>
-                    <button className='btn p-0'><i className='text-danger font-sm fas fa-trash-can'> </i> Remove</button>
+                    <button onClick={() => RemoveProduct(product.product.id)} className='btn p-0'><i className='text-danger font-sm fas fa-trash-can'> </i> Remove</button>
                 </div>
 
 
             </div>)}
 
-        </div> : ""}
+        </div> : <section id='loading' className='d-flex justify-content-center align-items-center' >
+            <Triangle
+                visible={true}
+                height="100"
+                width="100"
+                color="#4fa94d"
+                ariaLabel="triangle-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+
+            /></section>}
     </>
 }
 

@@ -31,8 +31,17 @@ export default function CartContexProvider(props) {
             .catch((err) => err)
     }
 
+    let RemoveCareIteam = function (id) {
+        return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, { headers }).then(
+            (res) => res).catch((err) => err)
+    }
+    let UpdateCountIteam = function (id, count) {
+        return axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, { count: count }, { headers }).then(
+            (res) => res).catch((err) => err)
+    }
 
-    return <CartContext.Provider value={{ addToCart,getLogedProdect }}>
+
+    return <CartContext.Provider value={{ addToCart, getLogedProdect, RemoveCareIteam ,UpdateCountIteam}}>
         {props.children}
     </CartContext.Provider>
 }

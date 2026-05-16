@@ -37,7 +37,7 @@ function Navbar() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/products">products</Link>
                         </li><li className="nav-item">
-                            <Link className="nav-link" to="/categories">categories</Link>
+                            <Link className="nav-link" to="/category">categories</Link>
                         </li><li className="nav-item">
                             <Link className="nav-link" to="/cart">cart</Link>
                         </li>
@@ -51,6 +51,9 @@ function Navbar() {
                             <i className='fab fa-instagram mx-2'></i>
                             <i className='fab fa-tiktok mx-2' ></i>
                             <i className='fab fa-youtube mx-2'></i>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/profile">Profile</Link>
                         </li>
 
                         {userToken ? <><li className="nav-item">
