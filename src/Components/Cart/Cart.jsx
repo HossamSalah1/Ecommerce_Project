@@ -3,6 +3,7 @@ import Style from './Cart.module.css'
 import { Triangle } from 'react-loader-spinner'
 
 import { CartContext } from '../../Context/cartContext'
+import { Link } from 'react-router-dom'
 
 
 function Cart() {
@@ -12,6 +13,8 @@ function Cart() {
     async function getCartProduct() {
         let { data } = await getLogedProdect();
         SetGetCart(data)
+        console.log(data);
+        
     }
     async function RemoveProduct(id) {
         let { data } = await RemoveCareIteam(id)
@@ -57,7 +60,7 @@ function Cart() {
 
             </div>)}
 
-            <button className= ' btn  bg-main w-25  text-white m-3 '  >online Payment</button>
+            <Link to={'/address'} className= ' btn  bg-main w-25  text-white m-3 '  >online Payment</Link>
             <button className='btn bg-main w-25 text-white m-3'>cash on Delivery</button>
 
 
