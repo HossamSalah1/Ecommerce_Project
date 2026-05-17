@@ -76,3 +76,12 @@ a , a:hover{
 {
     background-color: var(--light-color) !important;
 }
+.network{
+    padding: 20px;
+    background-color: #f0f3f2;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 999999;
+    box-shadow: var(--shadow);
+}

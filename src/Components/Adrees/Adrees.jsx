@@ -7,10 +7,10 @@ import { CartContext } from '../../Context/cartContext';
 
 function Adrees() {
 
-    let{OnlinePayment}=useContext(CartContext)
+    let{OnlinePayment,IdCart}=useContext(CartContext)
 
     async function handleAddressSubmit(valees) {
-        let res=await OnlinePayment("6a03bb43289c9500124df852","http://localhost:3000",valees)
+        let res=await OnlinePayment(IdCart,"http://localhost:3000",valees)
         console.log(res?.data?.session.url);
         window.location.href=res.data.session.url
         
