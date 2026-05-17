@@ -6,7 +6,6 @@ export let CartContext = createContext()
 export default function CartContexProvider(props) {
 
     let token = localStorage.getItem('userToken');
-    console.log(token);
 
     let headers = {
         token: token
@@ -39,9 +38,18 @@ export default function CartContexProvider(props) {
         return axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, { count: count }, { headers }).then(
             (res) => res).catch((err) => err)
     }
+    let OnlinePayment = function (cartId, url, values) {
+        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${url}`, {
+            values: {
+
+                shippingAddress: values
+            }
+        }, { headers }).then(
+            (res) => res).catch((err) => err)
+    }
 
 
-    return <CartContext.Provider value={{ addToCart, getLogedProdect, RemoveCareIteam ,UpdateCountIteam}}>
+    return <CartContext.Provider value={{ addToCart, getLogedProdect, RemoveCareIteam, UpdateCountIteam ,OnlinePayment}}>
         {props.children}
     </CartContext.Provider>
 }

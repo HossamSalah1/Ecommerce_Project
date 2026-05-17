@@ -20,6 +20,9 @@ import { Toaster } from 'react-hot-toast';
 
 import { Provider } from 'react-redux';
 import { store } from './Redux/store';
+import Adrees from './Components/Adrees/Adrees';
+import Orders from './Components/Orders/Orders';
+
 
 
 
@@ -34,6 +37,10 @@ let routers = createBrowserRouter([
       { path: 'category', element: <ProtectedRoute><Categories /></ProtectedRoute> },
       { path: 'productDetailes/:id', element: <ProtectedRoute><ProductDetailes /></ProtectedRoute> },
       { path: 'profile', element: <ProtectedRoute><Profile /></ProtectedRoute> },
+      { path: 'address', element: <ProtectedRoute><Adrees /></ProtectedRoute> },
+      { path: 'allorders', element: <ProtectedRoute><Orders /></ProtectedRoute> },
+
+
 
       { path: '*', element: <Notfound /> },
     ]
