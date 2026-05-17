@@ -6,7 +6,7 @@ import { CartContext } from '../../Context/cartContext'
 
 
 function Cart() {
-    let { getLogedProdect, RemoveCareIteam,UpdateCountIteam } = useContext(CartContext)
+    let { getLogedProdect, RemoveCareIteam, UpdateCountIteam } = useContext(CartContext)
     let [getCart, SetGetCart] = useState()
 
     async function getCartProduct() {
@@ -56,6 +56,10 @@ function Cart() {
 
 
             </div>)}
+
+            <button className= ' btn  bg-main w-25  text-white m-3 '  >online Payment</button>
+            <button className='btn bg-main w-25 text-white m-3'>cash on Delivery</button>
+
 
         </div> : <section id='loading' className='d-flex justify-content-center align-items-center' >
             <Triangle
